@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Sinerji Challenge</title>
+	<h:outputStylesheet library="styles" name="style.css" />
+</h:head>
+<h:body>
+
+	<header>
+		<p style="font-weight: bold;">SINERJI CHALLENGE</p>
+	</header>
+	<div id="conteudo">
+		<f:metadata>
+			<f:viewAction action="#{consultaPessoaBean.todasPessoas}" />
+		</f:metadata>
+		<h1>Consultar Pessoa</h1>
+		<h:form>
+			<div id="navbar">
+				<div class="box-input">
+					<h:outputLabel value="Nome" for="nome" />
+					<h:inputText class="input-consulta" id="nome" value="#{consultaPessoaBean.nomeConsulta}" />
+				</div>
+				<div class="box-input">
+					<h:outputLabel value="Estado" for="estado" />
+					<h:inputText class="input-consulta" id="estado"
+						value="#{consultaPessoaBean.estadoConsulta}" />
+				</div>
+				<div class="box-input">
+					<h:outputLabel value="Cidade" for="cidade" />
+					<h:inputText class="input-consulta" id="cidade"
+						value="#{consultaPessoaBean.cidadeConsulta}" />
+				</div>
+			</div>
+			<section style="margin-bottom: 12px; display: flex; gap: 6px">
+				<h:commandButton class="home-btn" value="Consultar"
+					action="#{consultaPessoaBean.consultarPessoas}" />
+				<h:commandButton class="home-btn" value="Limpar"
+					action="#{consultaPessoaBean.limparFiltros}" />
+				<h:commandButton class="home-btn" value="Incluir Pessoa +"
+					action="CreatePessoa.xhtml?faces-redirect=true" />
+
+			</section>
+		</h:form>
+
+		<p:dataTable value="#{consultaPessoaBean.listaPessoas}" var="pessoa"
+			emptyMessage="Nenhuma informação a ser exibida" paginator="true"
+			rows="5" paginatorPosition="bottom">
+
+			<!-- Colunas da tabela -->
+			<p:column headerText="Nome">
+				<h:outputText value="#{pessoa.nome}" />
+			</p:column>
+			<p:column headerText="Data Nascimento">
+				<h:outputText value="#{pessoa.idade}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+				<h:outputText
+					value="#{consultaPessoaBean.calcularIdade(pessoa.idade)}" />
+			</p:column>
+			<p:column headerText="Sexo">
+				<h:outputText value="#{pessoa.sexo.descricao}" />
+			</p:column>
+			<p:column headerText="Endereço">
+				<h:outputText
+					value="#{pessoa.endereco.logradouro}, #{pessoa.endereco.numero} - #{pessoa.endereco.cidade}, #{pessoa.endereco.estado} - CEP: #{pessoa.endereco.cep}" />
+			</p:column>
+			<p:column style="text-align: center;" headerText="Ações">
+				<p:commandButton style="width: 45%; border: none;" value="editar"
+					action="#{consultaPessoaBean.redirectToEdit(pessoa.id)}"/>
+				<p:commandButton
+					style="width: 45%; background: #d30000; color: white; border: none;"
+					value="remover"
+					action="#{consultaPessoaBean.removerPessoa(pessoa)}"  oncomplete="window.location.href = 'Home.xhtml';" />
+			</p:column>
+
+		</p:dataTable>
+
+	</div>
+</h:body>
+</html>

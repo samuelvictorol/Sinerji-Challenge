@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Sinerji Challenge - Cadastro de Pessoa</title>
+	<h:outputStylesheet library="styles" name="style.css" />
+</h:head>
+<h:body>
+	<header>
+		<p style="font-weight: bold;">SINERJI CHALLENGE</p>
+	</header>
+	<h1 style="padding-left: 32px">Cadastro de Pessoa</h1>
+<a style="margin-left:32px" class="return"
+		href="/sinerji-challenge/">Voltar a consulta</a>
+	<div class="form-wrapper">
+		<h:messages id="messages" globalOnly="true" showDetail="true"
+			showSummary="false" />
+
+		<h:form class="create-form">
+			<h2>Pessoa</h2>
+			<!-- Campo de nome da pessoa -->
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" value="#{createPessoaBean.pessoa.nome}"
+				required="true" />
+
+			<!-- Campo de data de nascimento -->
+			<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+			<p:calendar id="dataNascimento"
+				value="#{createPessoaBean.pessoa.idade}" pattern="dd/MM/yyyy"
+				required="true" />
+
+			<!-- Campo de sexo -->
+			<p:outputLabel for="sexo" value="Sexo:" />
+			<p:selectOneMenu id="sexo" value="#{createPessoaBean.pessoa.sexo}"
+				required="true">
+				<f:selectItem itemValue="MASC" itemLabel="Masculino" />
+				<f:selectItem itemValue="FEM" itemLabel="Feminino" />
+				<f:selectItem itemValue="NO" itemLabel="Outro" />
+			</p:selectOneMenu>
+			<h2>Endereço</h2>
+			<!-- Campo de endereço -->
+			<p:outputLabel for="logradouro" value="Logradouro:" />
+			<p:inputText id="logradouro"
+				value="#{createPessoaBean.endereco.logradouro}" required="true" />
+
+			<p:outputLabel for="numero" value="Número:" />
+			<p:inputText id="numero" value="#{createPessoaBean.endereco.numero}"
+				required="true" />
+
+			<p:outputLabel for="cidade" value="Cidade:" />
+			<p:inputText id="cidade" value="#{createPessoaBean.endereco.cidade}"
+				required="true" />
+
+			<p:outputLabel for="estado" value="Estado:" />
+			<p:inputText id="estado" value="#{createPessoaBean.endereco.estado}"
+				required="true" />
+
+			<p:outputLabel for="cep" value="CEP:" />
+			<p:inputText id="cep" value="#{createPessoaBean.endereco.cep}"
+				required="true" />
+
+			<!-- Botão de salvar -->
+			<p:commandButton class="incluir-btn" value="Incluir"
+				update="messages" actionListener="#{createPessoaBean.salvarPessoa}" />
+
+		</h:form>
+	</div>
+</h:body>
+</html>

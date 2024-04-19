@@ -1,0 +1,48 @@
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos compilados Java
+*.class
+
+# Arquivos de build do Maven
+target/
+
+# Arquivos de configuração do Eclipse
+.settings/
+.classpath
+.project
+
+# Arquivos de configuração do IntelliJ IDEA
+.idea/
+
+# Logs e arquivos temporários
+*.log
+*.log.*
+*.tmp
+*.swp
+
+# Dependências do Maven
+dependency-reduced-pom.xml
+.mvn/
+
+# Cache do npm
+node_modules/
+
+# Arquivos de log do servidor de aplicação
+logs/
+
+# Arquivos de saída de build
+build/
+out/
+
+# Arquivos de configuração específicos do ambiente
+.env
+.env.local
+.env.*.local
+
+# Arquivos específicos do seu ambiente de desenvolvimento
+# Adicione aqui outros arquivos e pastas que devem ser ignorados
+
+# Arquivos de configuração do projeto
+*.iml
